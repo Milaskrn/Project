@@ -41,6 +41,16 @@ train_tf_idf = pd.DataFrame(X_train_TFIDF, columns=kolom)
 test_tf_idf = pd.DataFrame(X_test_TFIDF, columns=kolom)
 
 # -------------------------------------------------------------------------------------------------
+lr_all = LogisticRegression()
+lr_all.fit(X_train_TFIDF, y_train)
+
+y_pred_all = lr_all.predict(X_test_TFIDF)
+
+kolom_all = ['negatif', 'positif']
+confm_all = confusion_matrix(y_test, y_pred_all)
+df_cm_all = pd.DataFrame(confm_all, index = kolom_all, columns = kolom_all)
+
+# -------------------------------------------------------------------------------------------------
 # chi square 500 fitur
 chi2_500_features = SelectKBest(chi2, k=500)
 X_500_best_features = chi2_500_features.fit_transform(train_tf_idf, y_train)
@@ -204,16 +214,40 @@ elif menu == 'Model Performance' :
     
     st.markdown('''
                 Model yang digunakan adalah Gaussian Naive Bayes, dan yang dipertimbangkan adalah jumlah fitur yang akan dipilih sebagai data yang siap untuk dilatih. Berikut adalah perbedaan antara dua pendekatan yang digunakan:
+                - Semua Fitur
                 - Pemilihan Fitur Menggunakan Chi-Square untuk 500 Fitur
                 - Pemilihan Fitur Menggunakan Chi-Square untuk K-Fitur  
                 
                 Kita dapat melihat perbedaan performa melalui menu di bawah ini.''')
     
     
-    options = ['---', "Pemilihan fitur Menggunakan Chi-Square untuk 500 Fitur", "Pemilihan Fitur Menggunakan Chi-Square untuk K-Fitur"]
+    options = ['---', "Semua Fitur", "Pemilihan fitur Menggunakan Chi-Square untuk 500 Fitur", "Pemilihan Fitur Menggunakan Chi-Square untuk K-Fitur"]
     selected_option = st.selectbox("Pilih salah satu opsi :", options, index = 0)
     
     if selected_option == options[1] :
+    
+        st.subheader("Semua Fitur")
+        st.markdown("<h4 style='text-align: left;'>Number of Features</h4>", unsafe_allow_html=True)
+
+        with st.container() :
+            fig, ax = plt.subplots()
+
+            st.markdown("<h4 style='text-align: left;'>Confusion Matrix</h4>", unsafe_allow_html=True)
+            sns.heatmap(df_cm_all, cmap = 'Greens', annot=True, fmt=".0f", ax = ax)
+            ax.set_xlabel('Sentimen Sebenarnya')
+            ax.set_ylabel('Sentimen Prediksi')
+
+            ax.invert_xaxis()
+
+            st.pyplot(fig)
+
+            st.markdown("<h4 style='text-align: left;'>Classification Report</h4>", unsafe_allow_html=True)
+            st.text(classification_report(y_test, y_pred_all))
+
+        with st.expander('Insights') :
+            st.write('Bla-bla')
+            
+    elif selected_option == options[2] :
     
         st.subheader("Pemilihan fitur Menggunakan Chi-Square untuk 500 Fitur")
         st.markdown("<h4 style='text-align: left;'>Number of Features</h4>", unsafe_allow_html=True)
@@ -244,7 +278,7 @@ elif menu == 'Model Performance' :
         with st.expander('Insights') :
             st.write('Bla-bla')
         
-    elif selected_option == options[2] :
+    elif selected_option == options[3] :
     
         st.subheader("Pemilihan Fitur Menggunakan Chi-Square untuk K-Fitur")
         
