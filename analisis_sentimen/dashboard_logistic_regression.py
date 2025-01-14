@@ -41,7 +41,7 @@ train_tf_idf = pd.DataFrame(X_train_TFIDF, columns=kolom)
 test_tf_idf = pd.DataFrame(X_test_TFIDF, columns=kolom)
 
 # -------------------------------------------------------------------------------------------------
-lr_all = LogisticRegression()
+lr_all = LogisticRegression(C = 10.0, fit_intercept = False)
 lr_all.fit(X_train_TFIDF, y_train)
 
 y_pred_all = lr_all.predict(X_test_TFIDF)
@@ -55,7 +55,7 @@ df_cm_all = pd.DataFrame(confm_all, index = kolom_all, columns = kolom_all)
 chi2_500_features = SelectKBest(chi2, k=500)
 X_500_best_features = chi2_500_features.fit_transform(train_tf_idf, y_train)
 
-lr500 = LogisticRegression()
+lr500 = LogisticRegression(C = 10.0, fit_intercept = False)
 lr500.fit(X_500_best_features, y_train)
 
 X_test_500_chi2 = chi2_500_features.transform(X_test_TFIDF)
@@ -71,7 +71,7 @@ df_cm_500 = pd.DataFrame(confm_500, index = kolom_500, columns = kolom_500)
 chi2_1543_features = SelectKBest(chi2, k=1543)
 X_1543_best_features = chi2_1543_features.fit_transform(train_tf_idf, y_train)
 
-lr1543 = LogisticRegression()
+lr1543 = LogisticRegression(C = 10.0, fit_intercept = False)
 lr1543.fit(X_1543_best_features, y_train)
 
 X_test_1543_chi2 = chi2_1543_features.transform(X_test_TFIDF)
