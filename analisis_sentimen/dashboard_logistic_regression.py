@@ -251,7 +251,7 @@ elif menu == 'Model Performance' :
         with st.container() :
             st.markdown("<h4 style='text-align: left;'>Eksperimen</h4>", unsafe_allow_html=True)
 
-            st.image("/image/logistic_regression_plot.png", caption = "Plot Eksperimen k-feature", use_column_width=True)
+            st.image("image/logistic_regression_plot.png", caption = "Plot Eksperimen k-feature", use_column_width=True)
         
         with st.expander('Insights') :
             st.write('Bla-bla')
