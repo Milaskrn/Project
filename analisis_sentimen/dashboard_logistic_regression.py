@@ -214,7 +214,7 @@ elif menu == 'Model Performance' :
     
     st.markdown('''
                 Model yang digunakan adalah Gaussian Naive Bayes, dan yang dipertimbangkan adalah jumlah fitur yang akan dipilih sebagai data yang siap untuk dilatih. Berikut adalah perbedaan antara dua pendekatan yang digunakan:
-                - Semua Fitur
+                - Menggunakan Semua Fitur
                 - Pemilihan Fitur Menggunakan Chi-Square untuk 500 Fitur
                 - Pemilihan Fitur Menggunakan Chi-Square untuk K-Fitur  
                 
@@ -226,10 +226,7 @@ elif menu == 'Model Performance' :
     
     if selected_option == options[1] :
     
-        st.subheader("Semua Fitur")
-        st.markdown("<h4 style='text-align: left;'>Number of Features</h4>", unsafe_allow_html=True)
-        
-        st.markdown("<h1 style='font-size: 36px;'>2241 Feature</h1>", unsafe_allow_html=True)
+        st.subheader("Semua Fitur (2241 Feature)")
 
         with st.container() :
             fig, ax = plt.subplots()
