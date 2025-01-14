@@ -228,7 +228,8 @@ elif menu == 'Model Performance' :
     
         st.subheader("Semua Fitur")
         st.markdown("<h4 style='text-align: left;'>Number of Features</h4>", unsafe_allow_html=True)
-        st.metric(value = "2241 Feature")
+        
+        st.markdown("<h1 style='font-size: 36px;'>2241 Feature</h1>", unsafe_allow_html=True)
 
         with st.container() :
             fig, ax = plt.subplots()
