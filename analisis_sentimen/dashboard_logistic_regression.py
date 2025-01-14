@@ -27,7 +27,7 @@ sw_df = pd.read_csv(f'{script_dir}/dataset/stopwords_indonesian.csv', index_col 
 X_raw = data["clean_text"]
 y_raw = data["labeling"]
 
-X_train, X_test, y_train, y_test = train_test_split(X_raw.values, y_raw.values, test_size=0.2, random_state=42)
+X_train, X_test, y_train, y_test = train_test_split(X_raw.values, y_raw.values, test_size=0.2, random_state=42, stratify = y_raw)
 
 vectorizer = TfidfVectorizer(ngram_range=(1,2))
 vectorizer.fit(X_train)
@@ -68,7 +68,7 @@ df_cm_500 = pd.DataFrame(confm_500, index = kolom_500, columns = kolom_500)
 
 # -------------------------------------------------------------------------------------------------
 # chi square 1543 fitur
-chi2_1543_features = SelectKBest(chi2, k=1524)
+chi2_1543_features = SelectKBest(chi2, k=1543)
 X_1543_best_features = chi2_1543_features.fit_transform(train_tf_idf, y_train)
 
 lr1543 = LogisticRegression(C = 10.0, fit_intercept = False)
