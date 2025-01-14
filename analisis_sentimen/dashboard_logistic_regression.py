@@ -25,7 +25,7 @@ data = data[data['Labeling'] != 'netral']
 sw_df = pd.read_csv(f'{script_dir}/dataset/stopwords_indonesian.csv', index_col = 0)
 
 X_raw = data["clean_text"]
-y_raw = data["Labeling "]
+y_raw = data["Labeling"]
 
 X_train, X_test, y_train, y_test = train_test_split(X_raw.values, y_raw.values, test_size=0.2, random_state=42)
 
