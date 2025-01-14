@@ -213,7 +213,7 @@ elif menu == 'Model Performance' :
     st.header('Model Performance')
     
     st.markdown('''
-                Model yang digunakan adalah Gaussian Naive Bayes, dan yang dipertimbangkan adalah jumlah fitur yang akan dipilih sebagai data yang siap untuk dilatih. Berikut adalah perbedaan antara dua pendekatan yang digunakan:
+                Model yang digunakan adalah Logistic Regression, dan yang dipertimbangkan adalah jumlah fitur yang akan dipilih sebagai data yang siap untuk dilatih. Berikut adalah perbedaan antara dua pendekatan yang digunakan:
                 - Menggunakan Semua Fitur
                 - Pemilihan Fitur Menggunakan Chi-Square untuk 500 Fitur
                 - Pemilihan Fitur Menggunakan Chi-Square untuk K-Fitur  
