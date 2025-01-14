@@ -108,7 +108,7 @@ elif menu == 'Insights' :
     
     st.markdown("<h3 style='text-align: center;'>Jumlah Sentimen tiap Channel</h3>", unsafe_allow_html=True)
     with st.container() :
-        sentimen_tiap_channel = pd.pivot_table(index = 'nama_channel', columns = 'labeling', aggfunc = 'size', data = df, fill_value = 0, margins =True)
+        sentimen_tiap_channel = pd.pivot_table(index = 'nama_channel', columns = 'labeling', aggfunc = 'size', data = ori_df, fill_value = 0)
 
         fig, ax = plt.subplots()
         sentimen_tiap_channel.plot(kind = 'bar', ax = ax)
