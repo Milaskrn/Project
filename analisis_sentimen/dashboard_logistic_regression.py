@@ -228,7 +228,7 @@ elif menu == 'Model Performance' :
     
         st.subheader("Semua Fitur")
         st.markdown("<h4 style='text-align: left;'>Number of Features</h4>", unsafe_allow_html=True)
-        st.metric(value = f'{train_tf_idf.shape[1]} Feature', label = '**Number of Fatures**')
+        st.metric(value = f'{train_tf_idf.shape[1]} Feature', label = '')
 
         with st.container() :
             fig, ax = plt.subplots()
